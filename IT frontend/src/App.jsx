@@ -50,8 +50,8 @@ const App = () => {
       <Navbar />
       <Routes>
         {/* Public routes */}
-        <Route path="https://asset-main-backend.onrender.com/login" element={<Login />} />
-        <Route path="https://asset-main-backend.onrender.com/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
         {/* Protected dashboard */}
         <Route
@@ -69,7 +69,7 @@ const App = () => {
         />
 
         {/* Redirect root to login */}
-        <Route path="https://asset-main-backend.onrender.com/" element={<Navigate to="/login" />} />
+        <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
   );

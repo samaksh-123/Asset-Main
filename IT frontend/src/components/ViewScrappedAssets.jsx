@@ -16,7 +16,7 @@ const ViewScrappedAssets = () => {
 
   const fetchScrappedAssets = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/returns');
+      const res = await axios.get('https://asset-main-backend.onrender.com/api/returns');
       const data = Array.isArray(res.data) ? res.data : res.data.returns || [];
 
       // ✅ Only assets with status "Scrapped"

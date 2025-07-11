@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchAvailableAssets, fetchIssuedAssets, fetchReturnedAssets } from '../api';
 import { exportToExcel } from '../utils/exportToExcel';
 
-const ViewTotalAssets = () => {
+const ViewTotalAssets = () => { 
   const [allAssets, setAllAssets] = useState([]);
   const [filteredAssets, setFilteredAssets] = useState([]);
   const [selectedType, setSelectedType] = useState('all');

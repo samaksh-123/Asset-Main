@@ -648,7 +648,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     // Fetch employees
-    axios.get('https://it-asset-management-u60k.onrender.com/api/employees')
+    axios.get('https://asset-main-backend.onrender.com/api/employees')
       .then(res => {
         if (Array.isArray(res.data)) {
           setTotalEmployees(res.data.length);
@@ -657,7 +657,7 @@ const Dashboard = () => {
       .catch(err => console.error("Failed to fetch employees:", err));
 
     // Fetch assets
-    axios.get('https://it-asset-management-u60k.onrender.com/api/assets')
+    axios.get('https://asset-main-backend.onrender.com/api/assets')
       .then(res => {
         generateAssetStats(res.data);
       })

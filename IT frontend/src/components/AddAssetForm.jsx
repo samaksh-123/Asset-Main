@@ -633,7 +633,7 @@
 
 import React, { useState } from 'react';
 import { addAsset } from '../api';
-import './AddDepartment'; // ✅ Import custom CSS
+ 
 
 const AddAssetForm = () => {
   const [form, setForm] = useState({

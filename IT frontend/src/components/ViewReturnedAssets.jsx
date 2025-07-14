@@ -455,7 +455,7 @@ const ViewReturnedAssets = () => {
 
   const fetchReturns = async () => {
     try {
-      const res = await axios.get('https://asset-main-backend.onrender.com/api/returns');
+      const res = await axios.get('https://asset-main-2.onrender.com/api/returns');
       const data = Array.isArray(res.data) ? res.data : res.data.returns || [];
       setReturns(data);
       setFilteredReturns(data);
@@ -513,7 +513,7 @@ const ViewReturnedAssets = () => {
   const handleRepairAction = async (assetReturnId, action) => {
     if (!action) return;
     try {
-      await axios.patch(`https://asset-main-backend.onrender.com/api/returns/repair-status/${assetReturnId}`, {
+      await axios.patch(`https://asset-main-2.onrender.com/api/returns/repair-status/${assetReturnId}`, {
         action,
       });
       alert(`Asset has been ${action === 'restore' ? 'restored to stock' : 'moved to scrap'}`);

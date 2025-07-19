@@ -12,7 +12,7 @@
 //     dateAdded: ''
 //   });
 
-//   const assetTypes = ['CPU', 'Desktop', 'Keyboard', 'Laptop', 'Mouse', 'Printer', 'TV', 'Ups', 'Wireless Mouse', 'Wireless Keyboard', 'Wlkbmc'];
+//   const assetTypes = ['CPU', 'Desktop', 'Keyboard', 'Laptop', 'Mouse', 'Printer', 'TV','Monitor','Ups', 'Wireless Mouse', 'Wireless Keyboard', 'Wlkbmc'];
 
 //   const handleChange = e => {
 //     setForm({ ...form, [e.target.name]: e.target.value });

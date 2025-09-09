@@ -12,7 +12,7 @@
 //     dateAdded: ''
 //   });
 
-//   const assetTypes = ['CPU', 'Desktop', 'Keyboard', 'Laptop', 'Monitor','Mouse', 'Printer', 'TV','Monitor','Ups', 'Wireless Mouse', 'Wireless Keyboard', 'Wlkbmc'];
+//   const assetTypes = ['CPU', 'Keyboard', 'Laptop', 'Monitor','Mouse', 'Printer', 'TV','Ups', 'Wireless Mouse', 'Wireless Keyboard', 'Wlkbmc'];
 
 //   const handleChange = e => {
 //     setForm({ ...form, [e.target.name]: e.target.value });
@@ -650,7 +650,7 @@ const AddAssetForm = () => {
     partyName: ''
   });
 
-  const assetTypes = ['CPU', 'Desktop', 'Keyboard', 'Laptop', 'Mouse', 'Printer', 'TV', 'UPS', 'Wireless Mouse', 'Wireless Keyboard', 'Wlkbmc'];
+  const assetTypes = ['CPU', 'Keyboard', 'Laptop','Monitor', 'Mouse', 'Printer', 'TV', 'UPS', 'Wireless Mouse', 'Wireless Keyboard', 'Wlkbmc'];
 
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -732,6 +732,7 @@ const AddAssetForm = () => {
             <option value="Bagru">Bagru</option>
             <option value="R.C.Pura">R.C.Pura</option>
             <option value="Hyderabad">Hyderabad</option>
+                <option value="Noida">Noida</option>
           </select>
 
           <label>Date Received:</label>

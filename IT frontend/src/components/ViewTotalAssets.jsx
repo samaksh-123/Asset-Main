@@ -2,7 +2,7 @@
 // import { fetchAvailableAssets, fetchIssuedAssets, fetchReturnedAssets } from '../api';
 // import { exportToExcel } from '../utils/exportToExcel';
 
-// const ViewTotalAssets = () => { 
+// const ViewTotalAssets = () => {
 //   const [allAssets, setAllAssets] = useState([]);
 //   const [filteredAssets, setFilteredAssets] = useState([]);
 //   const [selectedType, setSelectedType] = useState('all');
@@ -34,6 +34,9 @@
 //         returnDate: null,
 //         employeeName: '—',
 //         departmentName: '—',
+//         partyName: asset.partyName || 'N/A',
+//         price: asset.price || 'N/A',
+//         configuration: asset.configuration || 'N/A',
 //       }));
 
 //       const issued = (issuedRes.data || []).map((issue) => ({
@@ -44,6 +47,9 @@
 //         returnDate: null,
 //         employeeName: issue.employeeId?.name || 'N/A',
 //         departmentName: issue.departmentId?.name || 'N/A',
+//         partyName: issue.assetId?.partyName || 'N/A',
+//         price: issue.assetId?.price || 'N/A',
+//         configuration: issue.assetId?.configuration || 'N/A',
 //       }));
 
 //       const returned = (returnedRes.data || [])
@@ -56,6 +62,9 @@
 //           returnDate: ret.returnedDate,
 //           employeeName: ret.employeeId?.name || 'N/A',
 //           departmentName: ret.departmentId?.name || 'N/A',
+//           partyName: ret.assetId?.partyName || 'N/A',
+//           price: ret.assetId?.price || 'N/A',
+//           configuration: ret.assetId?.configuration || 'N/A',
 //         }));
 
 //       const combined = [...available, ...issued, ...returned];
@@ -107,6 +116,9 @@
 //       Name: asset.name,
 //       Type: asset.type,
 //       Status: asset.status,
+//       Configuration: asset.configuration || 'N/A',
+//       PartyName: asset.partyName || 'N/A',
+//       Price: asset.price ? `₹${asset.price}` : 'N/A',
 //       AssignedTo: asset.employeeName,
 //       Department: asset.departmentName,
 //       IssueDate: asset.status === 'In Stock' ? 'N/A' : formatDate(asset.issueDate),
@@ -180,6 +192,9 @@
 //               <th>Name</th>
 //               <th>Type</th>
 //               <th>Status</th>
+//               <th>Configuration</th>
+//               <th>Party Name</th>
+//               <th>Price</th>
 //               <th>Employee</th>
 //               <th>Department</th>
 //               <th>Issue Date</th>
@@ -192,6 +207,9 @@
 //                 <td>{asset.name}</td>
 //                 <td>{asset.type}</td>
 //                 <td>{asset.status}</td>
+//                 <td>{asset.configuration || 'N/A'}</td>
+//                 <td>{asset.partyName || 'N/A'}</td>
+//                 <td>{asset.price ? `₹${asset.price}` : 'N/A'}</td>
 //                 <td>{asset.employeeName}</td>
 //                 <td>{asset.departmentName}</td>
 //                 <td>{asset.status === 'In Stock' ? 'N/A' : formatDate(asset.issueDate)}</td>
@@ -206,7 +224,6 @@
 // };
 
 // export default ViewTotalAssets;
-
 
 
 
@@ -238,19 +255,18 @@ const ViewTotalAssets = () => {
         fetchReturnedAssets(),
       ]);
 
+      // Available Assets
       const available = (availableRes.data || []).map((asset) => ({
         ...asset,
         status: 'In Stock',
-        date: asset.addedDate || asset.createdAt,
+        date: asset.dateAdded || asset.createdAt,
         issueDate: null,
         returnDate: null,
         employeeName: '—',
         departmentName: '—',
-        partyName: asset.partyName || 'N/A',
-        price: asset.price || 'N/A',
-        configuration: asset.configuration || 'N/A',
       }));
 
+      // Issued Assets
       const issued = (issuedRes.data || []).map((issue) => ({
         ...issue.assetId,
         status: 'Issued',
@@ -259,11 +275,9 @@ const ViewTotalAssets = () => {
         returnDate: null,
         employeeName: issue.employeeId?.name || 'N/A',
         departmentName: issue.departmentId?.name || 'N/A',
-        partyName: issue.assetId?.partyName || 'N/A',
-        price: issue.assetId?.price || 'N/A',
-        configuration: issue.assetId?.configuration || 'N/A',
       }));
 
+      // Returned Assets
       const returned = (returnedRes.data || [])
         .filter((ret) => ret.assetId && ret.returnedDate)
         .map((ret) => ({
@@ -274,9 +288,6 @@ const ViewTotalAssets = () => {
           returnDate: ret.returnedDate,
           employeeName: ret.employeeId?.name || 'N/A',
           departmentName: ret.departmentId?.name || 'N/A',
-          partyName: ret.assetId?.partyName || 'N/A',
-          price: ret.assetId?.price || 'N/A',
-          configuration: ret.assetId?.configuration || 'N/A',
         }));
 
       const combined = [...available, ...issued, ...returned];
@@ -324,18 +335,23 @@ const ViewTotalAssets = () => {
   };
 
   const handleExport = () => {
-    const exportData = filteredAssets.map((asset) => ({
-      Name: asset.name,
-      Type: asset.type,
-      Status: asset.status,
-      Configuration: asset.configuration || 'N/A',
-      PartyName: asset.partyName || 'N/A',
-      Price: asset.price ? `₹${asset.price}` : 'N/A',
-      AssignedTo: asset.employeeName,
-      Department: asset.departmentName,
-      IssueDate: asset.status === 'In Stock' ? 'N/A' : formatDate(asset.issueDate),
-      ReturnDate: asset.status === 'Returned' ? formatDate(asset.returnDate) : 'N/A',
+    const exportData = filteredAssets.map((a) => ({
+      Type: a.type || 'N/A',
+      Name: a.name || 'N/A',
+      Configuration: a.configuration || 'N/A',
+      SerialNumber: a.serialNumber || 'N/A',
+      Location: a.location || 'N/A',
+      Status: a.status || 'N/A',
+      PartyName: a.partyName || 'N/A',
+      Price: a.price ? `₹${a.price}` : 'N/A',
+      Warranty: a.warranty || 'N/A',
+      Employee: a.employeeName,
+      Department: a.departmentName,
+      IssueDate: a.status === 'In Stock' ? 'N/A' : formatDate(a.issueDate),
+      ReturnDate: a.status === 'Returned' ? formatDate(a.returnDate) : 'N/A',
+      DateAdded: formatDate(a.dateAdded || a.createdAt),
     }));
+
     exportToExcel(exportData, `TotalAssets_${new Date().toISOString().split('T')[0]}.xlsx`);
   };
 
@@ -345,6 +361,7 @@ const ViewTotalAssets = () => {
     <div>
       <h2>Total Assets</h2>
 
+      {/* Filters */}
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
         <div>
           <label>Filter by Type: </label>
@@ -395,37 +412,46 @@ const ViewTotalAssets = () => {
         Showing {filteredAssets.length} asset{filteredAssets.length !== 1 && 's'}.
       </div>
 
+      {/* Table */}
       {filteredAssets.length === 0 ? (
         <p>No assets found with current filters.</p>
       ) : (
         <table border="1" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
           <thead>
             <tr>
-              <th>Name</th>
               <th>Type</th>
-              <th>Status</th>
+              <th>Name</th>
               <th>Configuration</th>
+              <th>Serial No</th>
+              <th>Location</th>
+              <th>Status</th>
               <th>Party Name</th>
               <th>Price</th>
+              <th>Warranty</th>
               <th>Employee</th>
               <th>Department</th>
               <th>Issue Date</th>
               <th>Return Date</th>
+              <th>Date Added</th>
             </tr>
           </thead>
           <tbody>
-            {filteredAssets.map((asset, idx) => (
+            {filteredAssets.map((a, idx) => (
               <tr key={idx}>
-                <td>{asset.name}</td>
-                <td>{asset.type}</td>
-                <td>{asset.status}</td>
-                <td>{asset.configuration || 'N/A'}</td>
-                <td>{asset.partyName || 'N/A'}</td>
-                <td>{asset.price ? `₹${asset.price}` : 'N/A'}</td>
-                <td>{asset.employeeName}</td>
-                <td>{asset.departmentName}</td>
-                <td>{asset.status === 'In Stock' ? 'N/A' : formatDate(asset.issueDate)}</td>
-                <td>{asset.status === 'Returned' ? formatDate(asset.returnDate) : 'N/A'}</td>
+                <td>{a.type}</td>
+                <td>{a.name || 'N/A'}</td>
+                <td>{a.configuration || 'N/A'}</td>
+                <td>{a.serialNumber || 'N/A'}</td>
+                <td>{a.location || 'N/A'}</td>
+                <td>{a.status}</td>
+                <td>{a.partyName || 'N/A'}</td>
+                <td>{a.price ? `₹${a.price}` : 'N/A'}</td>
+                <td>{a.warranty || 'N/A'}</td>
+                <td>{a.employeeName}</td>
+                <td>{a.departmentName}</td>
+                <td>{a.status === 'In Stock' ? 'N/A' : formatDate(a.issueDate)}</td>
+                <td>{a.status === 'Returned' ? formatDate(a.returnDate) : 'N/A'}</td>
+                <td>{formatDate(a.dateAdded || a.createdAt)}</td>
               </tr>
             ))}
           </tbody>
@@ -436,3 +462,4 @@ const ViewTotalAssets = () => {
 };
 
 export default ViewTotalAssets;
+

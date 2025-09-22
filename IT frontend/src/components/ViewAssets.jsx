@@ -217,13 +217,22 @@ const ViewAssets = () => {
 // >
 //   View Invoice
 // </a>
-<a
-  href={`https://localhost:5000/uploads/invoice/${a.invoiceFile}`}
+// <a
+//   href={`https://localhost:5000/uploads/invoice/${a.invoiceFile}`}
+//   target="_blank"
+//   rel="noopener noreferrer"
+// >
+//   View Invoice
+// </a>
+
+                <a
+  href={`https://asset-main-2.onrender.com/uploads/invoice/${a.invoiceFile}`}
   target="_blank"
   rel="noopener noreferrer"
 >
   View Invoice
 </a>
+
 
 
                   ) : (

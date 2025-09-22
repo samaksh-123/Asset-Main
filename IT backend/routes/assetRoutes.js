@@ -6,51 +6,79 @@ const path = require("path");
 const fs = require("fs");
 
 // Ensure upload folder exists
-const uploadPath = path.join(__dirname, "../uploads/invoice");
-if (!fs.existsSync(uploadPath)) {
-  fs.mkdirSync(uploadPath, { recursive: true });
-}
+// const uploadPath = path.join(__dirname, "../uploads/invoice");
+// if (!fs.existsSync(uploadPath)) {
+//   fs.mkdirSync(uploadPath, { recursive: true });
+// }
 
-// Multer storage setup
+// // Multer storage setup
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, uploadPath);
+//   },
+//   filename: (req, file, cb) => {
+//     const uniqueName = Date.now() + "-" + file.originalname.replace(/\s+/g, "_");
+//     cb(null, uniqueName);
+//   }
+// });
+
+// const upload = multer({
+//   storage,
+//   fileFilter: (req, file, cb) => {
+//     if (file.mimetype === "application/pdf") {
+//       cb(null, true);
+//     } else {
+//       cb(new Error("Only PDF files are allowed!"), false);
+//     }
+//   }
+// });
+
+// // ✅ POST Asset with Invoice PDF
+// router.post("/", upload.single("invoiceFile"), async (req, res) => {
+//   try {
+//     // Generate assetCode (simple auto-increment)
+//     const assetCount = await Asset.countDocuments();
+//     const assetCode = "AST" + String(assetCount + 1).padStart(4, "0");
+
+//     const newAsset = new Asset({
+//       assetCode,
+//       ...req.body,
+//       invoiceFile: req.file ? req.file.filename : null, // Save PDF filename
+//       issued: false
+//     });
+
+//     const savedAsset = await newAsset.save();
+//     res.status(201).json({ message: "Asset added successfully", asset: savedAsset });
+//   } catch (err) {
+//     console.error("Error saving asset:", err);
+//     res.status(500).json({ error: "Failed to save asset" });
+//   }
+// });
+
+// storage engine
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, uploadPath);
+    cb(null, 'uploads/');
   },
   filename: (req, file, cb) => {
-    const uniqueName = Date.now() + "-" + file.originalname.replace(/\s+/g, "_");
-    cb(null, uniqueName);
+    cb(null, Date.now() + path.extname(file.originalname));
   }
 });
 
-const upload = multer({
-  storage,
-  fileFilter: (req, file, cb) => {
-    if (file.mimetype === "application/pdf") {
-      cb(null, true);
-    } else {
-      cb(new Error("Only PDF files are allowed!"), false);
-    }
-  }
-});
+const upload = multer({ storage });
 
-// ✅ POST Asset with Invoice PDF
+// ✅ Add Asset
 router.post("/", upload.single("invoiceFile"), async (req, res) => {
   try {
-    // Generate assetCode (simple auto-increment)
-    const assetCount = await Asset.countDocuments();
-    const assetCode = "AST" + String(assetCount + 1).padStart(4, "0");
-
     const newAsset = new Asset({
-      assetCode,
       ...req.body,
-      invoiceFile: req.file ? req.file.filename : null, // Save PDF filename
-      issued: false
+      invoiceFile: req.file ? req.file.filename : null   // 👈 save file name
     });
 
-    const savedAsset = await newAsset.save();
-    res.status(201).json({ message: "Asset added successfully", asset: savedAsset });
+    await newAsset.save();
+    res.status(201).json(newAsset);
   } catch (err) {
-    console.error("Error saving asset:", err);
+    console.error(err);
     res.status(500).json({ error: "Failed to save asset" });
   }
 });

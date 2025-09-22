@@ -18,7 +18,7 @@
 
 //   const fetchIssuedAssets = async () => {
 //     try {
-//       const res = await axios.get('http://localhost:5000/api/issued');
+//       const res = await axios.get('https://asset-main-backend.onrender.com/api/issued');
 //       setIssuedAssets(res.data);
 //     } catch (err) {
 //       console.error('Failed to fetch issued assets', err);
@@ -665,7 +665,7 @@ const ReturnAsset = () => {
 
   const fetchIssuedAssets = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/issued');
+      const res = await axios.get('https://asset-main-2.onrender.com/api/issued');
       setIssuedAssets(res.data);
     } catch (err) {
       console.error('Failed to fetch issued assets', err);
@@ -706,7 +706,7 @@ const ReturnAsset = () => {
           dateAdded: returnDate
         };
 
-        await axios.post('http://localhost:5000/api/assets', availableAssetPayload);
+        await axios.post('https://asset-main-2.onrender.com/api/assets', availableAssetPayload);
         alert('Asset returned to stock successfully');
       } else {
         const returnPayload = {
@@ -720,11 +720,11 @@ const ReturnAsset = () => {
           remark
         };
 
-        await axios.post('http://localhost:5000/api/returns', returnPayload);
+        await axios.post('https://asset-main-2.onrender.com/api/returns', returnPayload);
         alert('Asset marked as returned successfully');
       }
 
-      await axios.delete(`http://localhost:5000/api/issued/${selectedId}`);
+      await axios.delete(`https://asset-main-2.onrender.com/api/issued/${selectedId}`);
 
       setSelectedId('');
       setReturnDate('');

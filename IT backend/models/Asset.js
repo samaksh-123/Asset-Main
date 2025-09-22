@@ -137,9 +137,8 @@ const assetSchema = new mongoose.Schema({
   partyName: String,
   issued: {
     type: Boolean,
-    default: false,
-  },
-   invoiceFile: String // ✅ store filename/path of uploaded PDF
+    default: false
+  }
 });
 
 module.exports = mongoose.model("Asset", assetSchema);

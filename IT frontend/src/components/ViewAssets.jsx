@@ -200,7 +200,7 @@ const ViewAssets = () => {
                 <td>{a.warranty || 'N/A'}</td>
                 <td>{formatDate(a.dateAdded)}</td>
                 <td>
-//{a.invoiceFile ? (
+{a.invoiceFile ? (
                     // <a
                     //   href={`http://localhost:5000/${a.invoiceFile}`}
                     //   target="_blank"
@@ -225,31 +225,21 @@ const ViewAssets = () => {
 //   View Invoice
 // </a>
 
-//                 <a
-//   href={`https://asset-main-2.onrender.com/uploads/invoice/${a.invoiceFile}`}
-//   target="_blank"
-//   rel="noopener noreferrer"
-// >
-//   View Invoice
-// </a>
+                <a
+  href={`https://asset-main-2.onrender.com/uploads/invoice/${a.invoiceFile}`}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  View Invoice
+</a>
 
 
 
-//                   ) : (
-//                     'N/A'
-//                   )}
+                  ) : (
+                    'N/A'
+                  )}
 
-                {asset.invoiceFile ? (
-  <a
-    href={`https://asset-main-2.onrender.com/uploads/invoice/${asset.invoiceFile}`}
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    View Invoice
-  </a>
-) : (
-  "N/A"
-)}
+       
 
                 </td>
               </tr>

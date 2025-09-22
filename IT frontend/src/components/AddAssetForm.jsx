@@ -961,7 +961,7 @@ const AddAssetForm = () => {
         formData.append("invoiceFile", invoiceFile);
       }
 
-      await axios.post("http://localhost:5000/api/assets", formData, {
+      await axios.post("https://asset-main-2.onrender.com/api/assets", formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
 

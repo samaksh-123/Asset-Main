@@ -17,8 +17,8 @@
   padding: 12px 18px;
   margin-bottom: 10px;
   border-radius: 10px;
-  background-color: #fff;
-  color: #333;
+  background-color: #000;
+  color: #fff;
   font-weight: 500;
   cursor: pointer;
   transition: background 0.3s, color 0.3s;
@@ -26,7 +26,7 @@
 
 .sidebar li:hover {
   background-color: #e6f0ff;
-  color: #0a58ca;
+  color: #f1f1f1;
 }
 
 .sidebar {
@@ -42,4 +42,32 @@
 .sidebar::-webkit-scrollbar-thumb {
   background: #bbb;
   border-radius: 4px;
+}
+
+
+.sidebar {
+  width: 250px;
+  background-color: #1e293b;
+  color: #e6f0ff;
+  height: 100vh;
+  position: fixed;
+  overflow-y: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.active {
+    transform: translateX(0%);
+  }
+
+  .sidebar-toggle-button {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
 }

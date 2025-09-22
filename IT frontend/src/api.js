@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'https://it-asset-management-u60k.onrender.com/api' });
+const API = axios.create({ baseURL: 'https://asset-main-backend.onrender.com/api' });
 
 // Assets
 export const addAsset = (data) => API.post('/assets/add', data);

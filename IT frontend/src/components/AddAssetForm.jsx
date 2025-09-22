@@ -650,9 +650,9 @@
 //     partyName: ''
 //   });
 
-<<<<<<< HEAD
+
 //   const assetTypes = ['CPU', 'Desktop', 'Keyboard', 'Laptop', 'Mouse', 'Printer', 'TV', 'UPS', 'Wireless Mouse', 'Wireless Keyboard', 'Wlkbmc'];
-=======
+
 //   const assetTypes = ['CPU', 'Keyboard', 'Laptop','Monitor', 'Mouse', 'Printer', 'TV', 'UPS', 'Wireless Mouse', 'Wireless Keyboard', 'Wlkbmc'];
 
 

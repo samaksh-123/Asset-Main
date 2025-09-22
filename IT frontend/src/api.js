@@ -7,7 +7,9 @@ const API = axios.create({ baseURL: 'https://asset-main-2.onrender.com/api' });
 
 
 // Assets
-export const addAsset = (data) => API.post('/assets/add', data);
+// export const addAsset = (data) => API.post('/assets/add', data);
+export const addAsset = (data) => API.post('/assets', data);
+
 export const fetchAvailableAssets = () => API.get('/assets/available');
 export const deleteAsset = (id) => API.delete(`/assets/${id}`);
 export const updateAsset = (id, data) => API.put(`/assets/${id}`, data);

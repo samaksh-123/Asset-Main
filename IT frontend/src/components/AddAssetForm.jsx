@@ -633,11 +633,7 @@
 
 // import React, { useState } from 'react';
 // import { addAsset } from '../api';
-<<<<<<< HEAD
-//  // ✅ Import custom CSS
-=======
- 
->>>>>>> 70591ac18cedfc5e8f5fda49db3584e73ea288d0
+
 
 // const AddAssetForm = () => {
 //   const [form, setForm] = useState({
@@ -658,7 +654,7 @@
 //   const assetTypes = ['CPU', 'Desktop', 'Keyboard', 'Laptop', 'Mouse', 'Printer', 'TV', 'UPS', 'Wireless Mouse', 'Wireless Keyboard', 'Wlkbmc'];
 =======
 //   const assetTypes = ['CPU', 'Keyboard', 'Laptop','Monitor', 'Mouse', 'Printer', 'TV', 'UPS', 'Wireless Mouse', 'Wireless Keyboard', 'Wlkbmc'];
->>>>>>> 70591ac18cedfc5e8f5fda49db3584e73ea288d0
+
 
 //   const handleChange = e => {
 //     setForm({ ...form, [e.target.name]: e.target.value });
@@ -740,10 +736,10 @@
 //             <option value="Bagru">Bagru</option>
 //             <option value="R.C.Pura">R.C.Pura</option>
 //             <option value="Hyderabad">Hyderabad</option>
-<<<<<<< HEAD
-=======
+
+
 //                 <option value="Noida">Noida</option>
->>>>>>> 70591ac18cedfc5e8f5fda49db3584e73ea288d0
+
 //           </select>
 
 //           <label>Date Received:</label>
@@ -762,7 +758,7 @@
 // };
 
 // export default AddAssetForm;
-<<<<<<< HEAD
+
 
 
 // import React, { useState } from 'react';
@@ -906,8 +902,7 @@
 
 // export default AddAssetForm;
 
-=======
->>>>>>> 70591ac18cedfc5e8f5fda49db3584e73ea288d0
+
 import React, { useState } from 'react';
 import axios from 'axios';
 

@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-<<<<<<< HEAD
+
 const API = axios.create({ baseURL: 'https://asset-main-backend.onrender.com/api' });
-=======
+
 const API = axios.create({ baseURL: 'https://asset-main-2.onrender.com/api' });
->>>>>>> 70591ac18cedfc5e8f5fda49db3584e73ea288d0
+
 
 // Assets
 export const addAsset = (data) => API.post('/assets/add', data);

@@ -171,7 +171,7 @@ const ViewAssets = () => {
         <table className='asset-table'>
           <thead>
             <tr>
-              <th>Asset Code</th>
+              {/* <th>Asset Code</th> */}
               <th>Type</th>
               <th>Name</th>
               <th>Configuration</th>
@@ -188,7 +188,7 @@ const ViewAssets = () => {
           <tbody>
             {filteredAssets.map((a, idx) => (
               <tr key={idx}>
-                <td>{a.assetCode || 'N/A'}</td>
+                {/* <td>{a.assetCode || 'N/A'}</td> */}
                 <td>{a.type || 'N/A'}</td>
                 <td>{a.name || 'N/A'}</td>
                 <td>{a.configuration || 'N/A'}</td>

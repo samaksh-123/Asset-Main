@@ -19,6 +19,10 @@ const assetSchema = new mongoose.Schema({
   issued: {
     type: Boolean,
     default: false
+  },
+    invoiceFile: {
+    type: String,
+    default: null
   }
 });
 

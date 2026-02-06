@@ -930,11 +930,13 @@ const AddAssetForm = () => {
     'Laptop',
     'Monitor',
     'Mouse',
+        'Mousepad',
     'Printer',
     'TV',
     'UPS',
     'Wireless Mouse',
     'Wireless Keyboard',
+        'Wkbmc',
     'Wlkbmc'
   ];
 
